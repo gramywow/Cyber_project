@@ -22,7 +22,7 @@ npm run build    # build de production
 
 ## Formulaire de contact
 
-L'envoi passe par [Resend](https://resend.com). Copier `.env.example` vers `.env.local` et renseigner les trois variables, ou les définir dans Vercel. Sans elles, le formulaire affiche qu'il n'est pas relié et n'accepte aucune demande.
+L'envoi passe par [Resend](https://resend.com). Copier `.env.example` vers `.env.local` et renseigner `RESEND_API_KEY` et `CONTACT_TO_EMAIL`, ou les définir dans Vercel. Sans elles, le formulaire affiche qu'il n'est pas relié et n'accepte aucune demande. `CONTACT_FROM_EMAIL` est facultatif tant qu'aucun domaine n'est vérifié chez Resend : l'expéditeur de test de Resend est alors utilisé, et il ne délivre qu'à l'adresse du compte Resend.
 
 ## Mise en ligne
 
