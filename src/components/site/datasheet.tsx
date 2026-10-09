@@ -240,7 +240,7 @@ export function Datasheet() {
       </div>
 
       <motion.p
-        className="tampon display pointer-events-none absolute -top-5 right-4 border-[3px] whitespace-nowrap border-minium-deep bg-paper px-3 pt-1 pb-0.5 text-2xl tracking-[0.08em] text-minium-deep sm:right-56 sm:text-3xl"
+        className="tampon display pointer-events-none absolute -top-9 right-4 border-[3px] whitespace-nowrap border-minium-deep bg-paper px-3 pt-1 pb-0.5 text-2xl tracking-[0.08em] text-minium-deep sm:-top-10 sm:right-8 sm:text-3xl"
         style={{ rotate: -7 }}
         initial={{ opacity: 0, scale: 1.7 }}
         animate={{ opacity: 1, scale: 1 }}
