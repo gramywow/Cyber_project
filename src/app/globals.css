@@ -44,16 +44,6 @@
     }
   }
 
-  body {
-    background: var(--color-paper);
-    color: var(--color-ink);
-    font-family: var(--font-sans);
-    font-size: 1.0625rem;
-    line-height: 1.6;
-    font-feature-settings: "ss01", "zero";
-    caret-color: var(--color-minium-deep);
-  }
-
   ::selection {
     background: var(--color-ink);
     color: var(--color-paper);
@@ -87,6 +77,17 @@
     scrollbar-width: thin;
     scrollbar-color: var(--color-ink-mute) transparent;
   }
+}
+
+/* Hors couche : ces réglages doivent l'emporter sur toute feuille de base injectée par un hébergeur. */
+body {
+  background: var(--color-paper);
+  color: var(--color-ink);
+  font-family: var(--font-sans);
+  font-size: 1.0625rem;
+  line-height: 1.6;
+  font-feature-settings: "ss01", "zero";
+  caret-color: var(--color-minium-deep);
 }
 
 @layer components {

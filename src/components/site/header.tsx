@@ -16,7 +16,7 @@ export function Brand() {
 
 export function Header() {
   return (
-    <header className="sticky top-0 z-40 border-b border-rule-strong bg-paper">
+    <header className="sticky top-[env(safe-area-inset-top,0px)] z-40 border-b border-rule-strong bg-paper">
       <ScrollProgress className="absolute -bottom-[3px] h-[3px] bg-minium" />
       <div className="mx-auto flex h-16 max-w-[84rem] items-center justify-between gap-6 px-4 sm:px-6 lg:px-10">
         <Brand />
