@@ -1,36 +1,41 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Use Case Factory
 
-## Getting Started
+Landing du catalogue de use cases de détection. Next.js, Tailwind CSS, Motion.
 
-First, run the development server:
+## Lancer
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+npm install
+npm run dev      # http://localhost:3000
+npm run build    # build de production
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Où modifier quoi
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+| Besoin | Fichier |
+|---|---|
+| Textes, packs, FAQ | `src/content/site.ts` |
+| Fiche spécimen et règles par SIEM | `src/content/specimen.ts` |
+| Couleurs, polices, boutons | `src/app/globals.css` |
+| Sections de la page | `src/components/site/` |
+| Envoi du formulaire | `src/app/api/contact/route.ts` |
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Formulaire de contact
 
-## Learn More
+L'envoi passe par [Resend](https://resend.com). Copier `.env.example` vers `.env.local` et renseigner les trois variables, ou les définir dans Vercel. Sans elles, le formulaire affiche qu'il n'est pas relié et n'accepte aucune demande.
 
-To learn more about Next.js, take a look at the following resources:
+## Mise en ligne
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Importer le dépôt dans Vercel : chaque push sur la branche principale déploie le site.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Outils de design
 
-## Deploy on Vercel
+- `PRODUCT.md` et `DESIGN.md` : contexte produit et direction visuelle.
+- `.claude/skills/impeccable` et `.claude/skills/ui-ux-pro-max` : skills de design chargées par Claude dans ce dépôt.
+- `src/components/motion-primitives/` : composants Motion Primitives (MIT).
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Avant publication
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- Relire les règles de `specimen.ts` sur un SIEM réel.
+- Valider les noms de packs, les formats de livraison et la FAQ.
+- Ajouter les mentions légales et la politique de confidentialité (obligatoires pour un site professionnel français qui collecte des e-mails).

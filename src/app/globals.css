@@ -1,26 +1,202 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+/*
+ * Use Case Factory : le dossier technique.
+ * Papier, encre, minium. Voir DESIGN.md pour les règles d'emploi.
+ */
+
+@theme {
+  --color-paper: oklch(0.968 0.01 88);
+  --color-paper-deep: oklch(0.935 0.014 88);
+  --color-ink: oklch(0.215 0.022 262);
+  --color-ink-soft: oklch(0.4 0.022 262);
+  --color-ink-mute: oklch(0.47 0.02 262);
+  --color-rule: oklch(0.215 0.022 262 / 0.2);
+  --color-rule-strong: oklch(0.215 0.022 262 / 0.85);
+  --color-minium: oklch(0.63 0.21 35);
+  --color-minium-deep: oklch(0.5 0.19 33);
+  --color-minium-wash: oklch(0.63 0.21 35 / 0.1);
+
+  --color-plate: oklch(0.2 0.022 262);
+  --color-plate-rule: oklch(0.968 0.01 88 / 0.16);
+  --color-plate-text: oklch(0.93 0.012 88);
+  --color-plate-mute: oklch(0.72 0.02 262);
+  --color-plate-key: oklch(0.8 0.13 48);
+  --color-plate-string: oklch(0.84 0.07 225);
+
+  --font-display: "Big Shoulders Variable", "Arial Narrow", sans-serif;
+  --font-sans: "IBM Plex Sans Variable", "Helvetica Neue", Arial, sans-serif;
+  --font-mono: "IBM Plex Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
+
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 5rem;
+    -webkit-text-size-adjust: 100%;
+  }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+  }
+
+  body {
+    background: var(--color-paper);
+    color: var(--color-ink);
+    font-family: var(--font-sans);
+    font-size: 1.0625rem;
+    line-height: 1.6;
+    font-feature-settings: "ss01", "zero";
+    caret-color: var(--color-minium-deep);
+  }
+
+  ::selection {
+    background: var(--color-ink);
+    color: var(--color-paper);
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--color-minium-deep);
+    outline-offset: 3px;
+  }
+
+  h1,
+  h2,
+  h3 {
+    text-wrap: balance;
+  }
+
+  p {
+    text-wrap: pretty;
+  }
+
+  a {
+    text-underline-offset: 0.22em;
+    text-decoration-thickness: 1px;
+  }
+
+  table {
+    font-variant-numeric: tabular-nums;
+  }
+
+  * {
+    scrollbar-width: thin;
+    scrollbar-color: var(--color-ink-mute) transparent;
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+@layer components {
+  /* Titres : capitales condensées, comme une plaque d'atelier. */
+  .display {
+    font-family: var(--font-display);
+    font-weight: 800;
+    text-transform: uppercase;
+    /* Les capitales accentuées du français ont besoin de cet interligne. */
+    line-height: 1.04;
+    letter-spacing: -0.005em;
+  }
+
+  /* Références, cotes et repères : la seule place du mono hors du code. */
+  .mark {
+    font-family: var(--font-mono);
+    font-size: 0.8125rem;
+    font-weight: 500;
+    letter-spacing: 0.02em;
+  }
+
+  .sheet {
+    border: 1.5px solid var(--color-rule-strong);
+    background: var(--color-paper);
+  }
+
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.625rem;
+    min-height: 2.875rem;
+    padding: 0.625rem 1.25rem;
+    font-weight: 600;
+    font-size: 1rem;
+    line-height: 1.2;
+    cursor: pointer;
+    transition:
+      background-color 180ms var(--ease-out-expo),
+      color 180ms var(--ease-out-expo),
+      box-shadow 180ms var(--ease-out-expo),
+      transform 180ms var(--ease-out-expo);
+  }
+
+  .btn-primary {
+    background: var(--color-minium-deep);
+    color: var(--color-paper);
+    box-shadow: 0 1px 0 oklch(0.215 0.022 262 / 0.5), 0 6px 14px -8px oklch(0.5 0.19 33 / 0.7);
+  }
+
+  .btn-primary:hover {
+    background: var(--color-ink);
+    box-shadow: 0 1px 0 oklch(0.215 0.022 262 / 0.5), 0 10px 18px -10px oklch(0.215 0.022 262 / 0.7);
+  }
+
+  .btn-primary:active {
+    transform: translateY(1px);
+  }
+
+  .btn-primary:disabled {
+    background: var(--color-ink-mute);
+    box-shadow: none;
+    cursor: progress;
+  }
+
+  .link {
+    font-weight: 600;
+    text-decoration: underline;
+    text-decoration-color: var(--color-minium);
+    text-decoration-thickness: 2px;
+    transition: text-decoration-color 180ms var(--ease-out-expo), color 180ms var(--ease-out-expo);
+  }
+
+  .link:hover {
+    color: var(--color-minium-deep);
+    text-decoration-color: currentColor;
+  }
+
+  .field {
+    width: 100%;
+    min-height: 2.875rem;
+    padding: 0.625rem 0.75rem;
+    background: var(--color-paper);
+    color: var(--color-ink);
+    border: 1px solid var(--color-rule-strong);
+    border-radius: 0;
+    font: inherit;
+    transition: box-shadow 180ms var(--ease-out-expo), border-color 180ms var(--ease-out-expo);
+  }
+
+  .field::placeholder {
+    color: var(--color-ink-mute);
+  }
+
+  .field:hover {
+    box-shadow: inset 0 -2px 0 var(--color-ink);
+  }
+
+  .field:focus-visible {
+    outline: none;
+    border-color: var(--color-minium-deep);
+    box-shadow: inset 0 -2px 0 var(--color-minium-deep);
+  }
+
+  .field[aria-invalid="true"] {
+    border-color: var(--color-minium-deep);
+    box-shadow: inset 0 -2px 0 var(--color-minium-deep);
+  }
+
+  .code-scroll {
+    scrollbar-color: var(--color-plate-mute) transparent;
+  }
 }
